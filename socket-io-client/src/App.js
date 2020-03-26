@@ -1,36 +1,51 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import socketIOClient from "socket.io-client";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      response: false,
-      endpoint: "http://127.0.0.1:4001"
+      endpoint: "http://127.0.0.1:4001",
+      
+      ///
+      color: 'white'
+      ///
+      
     };
   }
 
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
+  // sending sockets
+  send = () => {
+    const socket = socketIOClient(this.state.endpoint);
+    socket.emit('change color', this.state.color) // change 'red' to this.state.color
   }
 
-
+  ///
+  
+  // adding the function
+  setColor = (color) => {
+    this.setState({ color })
+  }
+  
+  ///
 
   render() {
-    const { response } = this.state;
+    // testing for socket connections
+
+    const socket = socketIOClient(this.state.endpoint);
+    socket.on('change color', (col) => {
+      document.body.style.backgroundColor = col
+    })
+
     return (
-        <div style={{ textAlign: "center" }}>
-          {response
-              ? <p>
-                The temperature in Florence is: {response} °F
-              </p>
-              : <p>Loading...</p>}
-        </div>
-    );
+      <div style={{ textAlign: "center" }}>
+        <button onClick={() => this.send() }>Change Color</button>
+        
+        <button id="blue" onClick={() => this.setColor('blue')}>Blue</button>
+        <button id="red" onClick={() => this.setColor('red')}>Red</button>
+
+      </div>
+    )
   }
 }
-
 export default App;
