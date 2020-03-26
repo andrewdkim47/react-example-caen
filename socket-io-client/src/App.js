@@ -3,17 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      response: false,
+      endpoint: "http://127.0.0.1:4001"
+    };
+  }
+
+  componentDidMount() {
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    socket.on("FromAPI", data => this.setState({ response: data }));
+  }
+
+
+
   render() {
+    const { response } = this.state;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div style={{ textAlign: "center" }}>
+          {response
+              ? <p>
+                The temperature in Florence is: {response} °F
+              </p>
+              : <p>Loading...</p>}
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
     );
   }
 }
