@@ -8,8 +8,10 @@ export default class Layout extends Component {
         super(props);
 
         this.state = {
-            socket:null
+            socket:null,
+            message: "Hello world!"
         };
+        this.handleQuery = this.handleQuery.bind(this);
     }
 
     componentWillMount() {
@@ -18,18 +20,27 @@ export default class Layout extends Component {
 
     initSocket = ()=>{
         const socket = io(socketUrl)
-        
+
         socket.on('connect', ()=> {
             console.log("Connected");
         })
         this.setState({socket})
     }
 
+    handleQuery(event) {
+        event.preventDefault();
+        const new_str = event.target.value + " yeeee boiiiiiiii";
+        this.setState({message: new_str})
+    }
+
     render() {
         const { title } = this.props
         return (
             <div className="container">
-                {title}
+                {title} says: {this.state.message}
+                <div className= "centerizer">
+                    <input type="text" onChange={this.handleQuery} className="entrybar"/>
+                </div>
             </div>
         );
     }
