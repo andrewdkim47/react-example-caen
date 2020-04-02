@@ -50,12 +50,15 @@ export default class Layout extends Component {
 
     render() {
         const { title } = this.props
-        const {socket} = this.state
+        const { socket } = this.state
         return (
             <div className="container">
-                <LoginForm socket = {socket} setUser={this.setUser} />
+                <LoginForm socket={socket} setUser={this.setUser} />
+                
+
+
                 {title} says: {this.state.message}
-                <div className = "centerizer">
+                <div className="centerizer">
                     <input type="text" onChange={this.handleQuery} className="entrybar"/>
                 </div>
             </div>

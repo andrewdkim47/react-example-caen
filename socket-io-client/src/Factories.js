@@ -1,10 +1,8 @@
+// helper functions
+
 const uuidv4 = require('uuid/v4') //alllows us to have unique ids for all users
 
-/*
-*
-*
-*
-*/
+
 const createUser = ({name=""} = {})=> (
     {
         id:uuidv4(),

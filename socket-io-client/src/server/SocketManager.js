@@ -4,8 +4,7 @@ const { VERIFY_USER, USER_CONNECTED, LOGOUT} = require('../Events')
 
 const {createUser, createMessage, createChat} = require('../Factories')
 
-let connectedUsers = { }
-
+let connectedUsers = { } // Client side sends usernames to this
 
 module.exports = function(socket) {
     console.log("Socket Id: " + socket.id)
@@ -22,10 +21,11 @@ module.exports = function(socket) {
 
     //user connects with username
     socket.on(USER_CONNECTED, (user)=> {
+        console.log("User connected with username: " + user.name)
         connectedUsers = addUser(connectedUsers, user)
         socket.user = user
 
-        io.emit(USER_CONNECTED, connectedUsers)
+        io.emit(USER_CONNECTED, connectedUsers) // 
         console.log(connectedUsers);
 
     })

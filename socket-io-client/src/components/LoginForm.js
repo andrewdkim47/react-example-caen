@@ -19,15 +19,15 @@ export default class LoginForm extends Component {
         } 
         else {
             this.props.setUser(user)
-            this.setError("")
+            this.setError("User name added!")
         }
     }
 
     handleSubmit = (e)=> {
         e.preventDefault();
 
-        const {socket }= this.props;
-        const {nickname} = this.state;
+        const { socket }= this.props;
+        const { nickname } = this.state;
         socket.emit(VERIFY_USER, nickname, this.setUser);
     }
 
@@ -35,8 +35,6 @@ export default class LoginForm extends Component {
         e.preventDefault();
 
         this.setState({nickname:e.target.value});
-
-
     }
 
     setError = (error)=> {
@@ -49,17 +47,17 @@ export default class LoginForm extends Component {
             <div className="login">
                 <form onSubmit={this.handleSubmit} className="login-form">
                     <label htmlFor="nickname">
-                        <h2> Got a nickname?</h2>    
+                        <h2> Add a username to get started!</h2>    
                     </label>    
                     <input
-                        ref = {(input)=> {this.textInput = input}}
-                        type = "text"
-                        id = "nickname"
+                        ref={(input)=> {this.textInput=input}}
+                        type="text"
+                        id="nickname"
                         value={nickname}
                         onChange={this.handleChange}
-                        placeHolder={'MyCoolUsername'}
-                        />
-                        <div className="error">{error ? error:null}</div>
+                        placeHolder={'Type in a Unique Name!'}
+                    />
+                    <div className="error">{error ? error:null}</div>
                 </form>
             </div>
         );
