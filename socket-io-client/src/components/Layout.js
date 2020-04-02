@@ -64,8 +64,11 @@ export default class Layout extends Component {
                 <h2>
                     LOGGED IN as {user.name}
                     <div className="centerizer">
+                        Say something to our server: 
                         <input type="text" onChange={this.handleQuery} className="entrybar"/>
                     </div>
+
+                    <h3> Server says: { this.state.message } </h3>
                 </h2>
             </div>
         }
@@ -77,7 +80,7 @@ export default class Layout extends Component {
         }
         return (
             <div className="container">
-                {title} says: {this.state.message}
+                {title}
                 {show}                
             </div>
         );
