@@ -1,7 +1,8 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import io from 'socket.io-client'
 import LoginForm from './LoginForm'
+
 
 // http://my ip4 num:server port
 const socketUrl = "http://192.168.2.13:3231"

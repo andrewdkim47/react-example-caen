@@ -29,3 +29,6 @@ https://www.valentinog.com/blog/socket-react/
 - open another terminal and type npm run server in socket-io-client to start server.
 - when you open up localhost:3000 in browser, it should say socket id: ______ in terminal.
 
+# ROUTING
+- npm install react-router-dom
+- 
