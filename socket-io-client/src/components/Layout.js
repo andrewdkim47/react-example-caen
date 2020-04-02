@@ -12,7 +12,8 @@ export default class Layout extends Component {
         this.state = {
             socket:null,
             message: "Hello world!",
-            user:null
+            user:null,
+            loggedin: false
         };
         this.handleQuery = this.handleQuery.bind(this);
     }
@@ -34,6 +35,9 @@ export default class Layout extends Component {
         const { socket } = this.state
         socket.emit(USER_CONNECTED, user); //sent to server to add user
         this.setState({user})
+        socket.on(USER_CONNECTED, (conntectedUsers)=> {
+            this.setState({loggedin: true})
+        })
     }
 
     logout = ()=> {
@@ -51,10 +55,26 @@ export default class Layout extends Component {
     render() {
         const { title } = this.props
         const { socket } = this.state
+        const { loggedin } = this.state
+        const { user } = this.state
+        let show;
+        if (loggedin) {
+            show = 
+            <div>
+                <h2>
+                    LOGGED IN as {user.name}
+                </h2>
+            </div>
+        }
+        else {
+            show = 
+            <div>
+                <LoginForm socket={socket} setUser={this.setUser} />
+            </div>
+        }
         return (
             <div className="container">
-                <LoginForm socket={socket} setUser={this.setUser} />
-                
+                {show}
 
 
                 {title} says: {this.state.message}
