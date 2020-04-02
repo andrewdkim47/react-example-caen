@@ -63,6 +63,9 @@ export default class Layout extends Component {
             <div>
                 <h2>
                     LOGGED IN as {user.name}
+                    <div className="centerizer">
+                        <input type="text" onChange={this.handleQuery} className="entrybar"/>
+                    </div>
                 </h2>
             </div>
         }
@@ -74,13 +77,8 @@ export default class Layout extends Component {
         }
         return (
             <div className="container">
-                {show}
-
-
                 {title} says: {this.state.message}
-                <div className="centerizer">
-                    <input type="text" onChange={this.handleQuery} className="entrybar"/>
-                </div>
+                {show}                
             </div>
         );
     }
