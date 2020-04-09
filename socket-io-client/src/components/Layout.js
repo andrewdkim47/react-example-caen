@@ -20,7 +20,7 @@ export default class Layout extends Component {
     }
 
     componentWillMount() {
-        this.initSocket()
+        this.initSocket() 
     }
 
     initSocket = ()=>{
@@ -29,15 +29,18 @@ export default class Layout extends Component {
         socket.on('connect', ()=> {
             console.log("Connecteddd");
         })
-        this.setState({socket})
+        this.setState({socket}, ()=> {
+            console.log(this.state);
+        })
     }
 
     setUser = (user) => {
         const { socket } = this.state
         socket.emit(USER_CONNECTED, user); //sent to server to add user
         this.setState({user})
-        socket.on(USER_CONNECTED, (conntectedUsers)=> {
+        socket.on(USER_CONNECTED, (connectedUsers)=> {
             this.setState({loggedin: true})
+            console.log(connectedUsers)
         })
     }
 
@@ -62,15 +65,14 @@ export default class Layout extends Component {
         if (loggedin) {
             show = 
             <div>
-                <h2>
+                <h3>
                     LOGGED IN as {user.name}
                     <div className="centerizer">
                         Say something to our server: 
                         <input type="text" onChange={this.handleQuery} className="entrybar"/>
                     </div>
-
-                    <h3> Server says: { this.state.message } </h3>
-                </h2>
+                </h3>
+                <h2> Server says: { this.state.message } </h2>
             </div>
         }
         else {

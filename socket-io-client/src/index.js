@@ -9,7 +9,7 @@ import Route2 from './components/route2'
 const routing = (
   <Router>
     <div>
-      <Route exact path="/" component={ App } />
+      <Route exact path="/" component={ App } /> 
       <Route path="/Route1" component={ Route1 } />
       <Route path="/Route2" component={ Route2 } />
     </div>
