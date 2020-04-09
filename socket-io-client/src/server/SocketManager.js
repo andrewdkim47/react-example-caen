@@ -37,12 +37,12 @@ function addUser(userList, user) {
     newList[user.name] = user
     return newList
 }
-
+/*
 function removeUser(userList, username) {
     let newList = Object.assign({}, userList)
     delete newList[username]
     return newList
-}
+}*/
 
 function isUser(userList, username) {
     return username in userList

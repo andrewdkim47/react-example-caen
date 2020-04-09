@@ -1,6 +1,13 @@
 # react-example-caen
 Simple react app with socket io and page routing. 
 
+to RUN:
+1.) cd socket-io-client/
+2.) IN another terminal, cd socket-io-client/
+3.) npm start in one terminal, and wait
+4.) npm run server in tthe other
+5.) go to localhost:3000 in chrome.
+
 1.) Downlod node.js
 2.) create git repo react-example-caen
 

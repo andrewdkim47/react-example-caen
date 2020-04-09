@@ -1,5 +1,6 @@
 // helper functions
 
+//A UUID is simply a 128-bit unique value that can be expressed as either a larger number or a string.
 const uuidv4 = require('uuid/v4') //alllows us to have unique ids for all users
 
 
@@ -11,6 +12,7 @@ const createUser = ({name=""} = {})=> (
 )
 
 
+/*
 const createMessage = ({message ="", sender=""}= {}) => (
     {
         id:uuidv4(),
@@ -34,10 +36,10 @@ const createChat = ({messages=[], name="Community", users=[]} = {})=>(
 // gets date object and spits out hours and minutes from date.
 const getTime = (date)=>{
     return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
-}
+}*/
 
 module.exports = {
-    createMessage,
-    createChat,
+    //createMessage,
+    //createChat,
     createUser
 }

@@ -55,7 +55,7 @@ export default class LoginForm extends Component {
                         id="nickname"
                         value={nickname}
                         onChange={this.handleChange}
-                        placeHolder={'Type in a Unique Name!'}
+                        placeholder={'Type in a Unique Name!'}
                     />
                     <div className="error">{error ? error:null}</div>
                 </form>
