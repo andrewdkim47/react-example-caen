@@ -26,7 +26,7 @@ export default class LoginForm extends Component {
     handleSubmit = (e)=> {
         e.preventDefault();
 
-        const { socket }= this.props;
+        const { socket } = this.props;
         const { nickname } = this.state;
         socket.emit(VERIFY_USER, nickname, this.setUser);
     }
