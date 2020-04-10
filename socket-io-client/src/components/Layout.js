@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import io from 'socket.io-client'
 import LoginForm from './LoginForm'
+import GlobalSocket from './GlobalSocket'
 
 
 // http://my ip4 num:server port
@@ -17,21 +18,6 @@ export default class Layout extends Component {
             loggedin: false
         };
         this.handleQuery = this.handleQuery.bind(this);
-    }
-
-    componentWillMount() {
-        this.initSocket() 
-    }
-
-    initSocket = ()=>{
-        const socket = io(socketUrl)
-
-        socket.on('connect', ()=> {
-            console.log("Connecteddd");
-        })
-        this.setState({socket}, ()=> {
-            console.log(this.state);
-        })
     }
 
     setUser = (user) => {
@@ -57,7 +43,7 @@ export default class Layout extends Component {
     }
 
     render() {
-        const { title } = this.props
+        const { title } = "HELLOW WORLD APP"
         const { socket } = this.state
         const { loggedin } = this.state
         const { user } = this.state
@@ -78,6 +64,7 @@ export default class Layout extends Component {
         else {
             show = 
             <div>
+                {title}
                 <LoginForm socket={socket} setUser={this.setUser} />
             </div>
         }
