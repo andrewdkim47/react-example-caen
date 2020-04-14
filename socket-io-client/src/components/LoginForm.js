@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import GlobalSocket from '../GlobalSocket'
 import { VERIFY_USER } from '../Events'
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
 
     constructor(props) {
         super(props);
@@ -26,9 +27,8 @@ export default class LoginForm extends Component {
     handleSubmit = (e)=> {
         e.preventDefault();
 
-        const { socket } = this.props;
         const { nickname } = this.state;
-        socket.emit(VERIFY_USER, nickname, this.setUser);
+        this.props.socket.emit(VERIFY_USER, nickname, this.setUser);
     }
 
     handleChange = (e)=> {
@@ -63,3 +63,12 @@ export default class LoginForm extends Component {
         );
     }
 }
+
+// pass in socket props in class Route1
+const LoginFormwithSocket = props => (
+    <GlobalSocket.Consumer>
+        {socket => <LoginForm {...props} socket={socket}/>}
+    </GlobalSocket.Consumer>
+)
+  
+  export default LoginFormwithSocket

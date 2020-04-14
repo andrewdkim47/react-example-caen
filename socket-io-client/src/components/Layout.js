@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { USER_CONNECTED, LOGOUT } from '../Events'
-import io from 'socket.io-client'
+import { USER_CONNECTED } from '../Events'
+//import io from 'socket.io-client'
 import LoginForm from './LoginForm'
-import GlobalSocket from './GlobalSocket'
+//import GlobalSocket from '../GlobalSocket'
 
 
-// http://my ip4 num:server port
-const socketUrl = "http://192.168.2.13:3231"
-export default class Layout extends Component {
+class Layout extends Component {
     constructor(props) {
         super(props);
 
@@ -17,7 +15,6 @@ export default class Layout extends Component {
             user:null,
             loggedin: false
         };
-        this.handleQuery = this.handleQuery.bind(this);
     }
 
     setUser = (user) => {
@@ -30,20 +27,15 @@ export default class Layout extends Component {
         })
     }
 
+    /*
     logout = ()=> {
         const { socket } = this.state
         socket.emit(LOGOUT)
         this.setState({user:null})
-    }
+    }*/
 
-    handleQuery(event) {
-        event.preventDefault();
-        const new_str = event.target.value + " yeeee boiiiiiiii";
-        this.setState({message: new_str})
-    }
 
     render() {
-        const { title } = "HELLOW WORLD APP"
         const { socket } = this.state
         const { loggedin } = this.state
         const { user } = this.state
@@ -53,10 +45,6 @@ export default class Layout extends Component {
             <div>
                 <h3>
                     LOGGED IN as {user.name}
-                    <div className="centerizer">
-                        Say something to our server: 
-                        <input type="text" onChange={this.handleQuery} className="entrybar"/>
-                    </div>
                 </h3>
                 <h2> Server says: { this.state.message } </h2>
             </div>
@@ -64,15 +52,15 @@ export default class Layout extends Component {
         else {
             show = 
             <div>
-                {title}
                 <LoginForm socket={socket} setUser={this.setUser} />
             </div>
         }
         return (
             <div className="container">
-                {title}
                 {show}                
             </div>
         );
     }
 }
+
+export default Layout

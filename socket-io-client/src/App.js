@@ -7,30 +7,20 @@ import GlobalSocket from './GlobalSocket'
 import io from 'socket.io-client'
 
 // INITIALIZE SINGLETON SOCKET
-// http://my ip4 num:server port
-const socketUrl = "http://192.168.2.13:3231"
+// http://my ip4 num:server port. need to update this: go to cmd and type in ipconfig
+const socketUrl = "http://192.168.2.14:3231"
 const g_socket = io(socketUrl)
 g_socket.on('connect', ()=> {
   console.log("Connecteddd");
 })
 
 // Pass in the socket to all routes
-const index = props => (
-  <GlobalSocket.Provider value = {g_socket}>
-    <Router>
-        <Route exact path="/" component={ App } /> 
-        <Route path="/Route1" component={ Route1 } />
-        <Route path="/Route2" component={ Route2 } />
-    </Router>
-  </GlobalSocket.Provider>
-)
-
-class App extends Component {
-  render() {
-    return (
+const App = props => (
+  <GlobalSocket.Provider value={g_socket}>
       <Router>
         <div>
           <ul>
+            <li><Link to='/'>Main</Link></li>
             <li><Link to='/route1'>Route 1</Link></li>
             <li><Link to='/route2'>Route 2</Link></li>
           </ul>
@@ -39,8 +29,8 @@ class App extends Component {
           <Route path='/route2' component={Route2} />
         </div>
       </Router>
-    )
-  }
-}
+  </GlobalSocket.Provider>
+)
+
 export default App;
 
