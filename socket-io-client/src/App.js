@@ -22,7 +22,7 @@ const App = props => (
             <li><Link to='/route1'>Route 1</Link></li>
             <li><Link to='/route2'>Route 2</Link></li>
           </ul>
-          <Route path='/route1' component={Route1} />
+          <Route exact path='/' component={Route1} />
           <Route path='/route2' component={Route2} />
         </div>
       </Router>
