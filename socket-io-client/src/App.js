@@ -19,7 +19,7 @@ const App = props => (
       <Router>
         <div>
           <ul>
-            <li><Link to='/route1'>Route 1</Link></li>
+            <li><Link to='/'>Route 1</Link></li>
             <li><Link to='/route2'>Route 2</Link></li>
           </ul>
           <Route exact path='/' component={Route1} />
