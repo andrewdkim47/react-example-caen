@@ -1,0 +1,5 @@
+{
+    "globals": {
+        "g_socket": "writable"
+    }
+}

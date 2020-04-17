@@ -1,3 +1,4 @@
+/* global g_socket */
 import React, { Component } from 'react';
 import GlobalSocket from '../GlobalSocket'
 import { VERIFY_USER } from '../Events'
@@ -28,7 +29,7 @@ class LoginForm extends Component {
         e.preventDefault();
 
         const { nickname } = this.state;
-        this.props.socket.emit(VERIFY_USER, nickname, this.setUser);
+        g_socket.emit(VERIFY_USER, nickname, this.setUser);
     }
 
     handleChange = (e)=> {
@@ -71,4 +72,4 @@ const LoginFormwithSocket = props => (
     </GlobalSocket.Consumer>
 )
   
-  export default LoginFormwithSocket
+export default LoginForm
